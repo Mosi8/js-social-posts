@@ -55,17 +55,16 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
-
 const post = document.getElementById("container");
 
 for (let i = 0; i< posts.length; i++){
-    // let imageProfile = (posts[i].author.image == null) ? “” : “img/“;
+    let imageProfile = (posts[i].author.image == null) ? '<div class="profile-pic-default">'+ posts[i].author.name[0] +'</div>' : '<img class="profile-pic" src="'+posts[i].author.image+'" alt="${posts[i].author.name}">';
     post.innerHTML += `
         <div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${posts[i].author.image}" alt="${posts[i].author.name}">                    
+                        ${imageProfile}                    
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${posts[i].author.name}</div>
@@ -104,17 +103,17 @@ for(i=1; i <= posts.length; i++){
     
     like.addEventListener('click', function(){
         if(!postlike.includes(counterLikes)){
-        this.classList.add('like-button--liked');
-        counterLikes.innerHTML = numLikes + 1;
-        postlike.push(counterLikes);
+            this.classList.add('like-button--liked');
+            counterLikes.innerHTML = numLikes + 1;
+            postlike.push(counterLikes);
         }else{
-        this.classList.remove('like-button--liked'),
-        counterLikes.innerHTML = numLikes + 1 -1;
-        for(let ii = 0; ii < postlike.length; ii++){ 
-            if ( postlike[ii] === counterLikes) {
-              postlike.splice(counterLikes); 
+            this.classList.remove('like-button--liked'),
+            counterLikes.innerHTML = numLikes + 1 -1;
+            for(let ii = 0; ii < postlike.length; ii++){ 
+                if ( postlike[ii] === counterLikes) {
+                postlike.splice(counterLikes); 
+                }
             }
-         }
         }
     }) 
     
